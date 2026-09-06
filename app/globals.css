@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ──────────────────────────────────────────── */
+:root {
+  --color-bg: #0a0a0a;
+  --color-text: #e8e4dc;
+  --color-accent: #c8a96e;
+  --color-meta: #5c5c5c;
+  --color-surface: #141414;
+}
+
+/* ─── Base reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Let Lenis handle smooth scrolling */
+  scroll-behavior: auto;
+  background-color: var(--color-bg);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide default cursor only on pointer devices (not touch) */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Thin accent scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+}
+
+/* GSAP pin spacer needs matching bg */
+.pin-spacer {
+  background-color: var(--color-bg) !important;
+}
+
+/* ─── Gallery responsive layout (CSS-driven, GSAP handles animation) ── */
+
+/* Mobile (default): vertical stack */
+.gallery-track {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5rem 1.25rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.gallery-item[data-ratio="portrait"] {
+  aspect-ratio: 3 / 4;
+}
+
+/* Desktop (≥768px): horizontal track */
+@media (min-width: 768px) {
+  .gallery-track {
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    height: 100vh;
+    padding: 0 9rem 0 3.5rem;
+    width: max-content;
+  }
+
+  .gallery-item {
+    width: 38vw;
+    height: 65vh;
+    max-width: 480px;
+    aspect-ratio: unset;
+  }
+
+  .gallery-item[data-ratio="landscape"] {
+    width: 66vw;
+    height: 57vh;
+    max-width: 860px;
+  }
+
+  .gallery-item[data-ratio="square"] {
+    width: 50vw;
+    height: 62vh;
+    max-width: 660px;
+  }
+}
