@@ -32,7 +32,7 @@ export default function Navbar() {
       <a
         href="#"
         className="font-sans text-[11px] tracking-[0.35em] uppercase"
-        style={{ color: "var(--color-text)", fontWeight: 400 }}
+        style={{ color: "white", fontWeight: 400 }}
       >
         Frame & Light
       </a>
@@ -43,7 +43,7 @@ export default function Navbar() {
             <a
               href={`#${link.toLowerCase()}`}
               className="font-sans text-[11px] tracking-widest transition-opacity duration-300 hover:opacity-40"
-              style={{ color: "var(--color-text)", fontWeight: 300 }}
+              style={{ color: "white", fontWeight: 300 }}
             >
               {link}
             </a>
